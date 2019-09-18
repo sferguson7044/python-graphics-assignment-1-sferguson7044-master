@@ -14,6 +14,7 @@ def main():
   #dice()
   #square(100)
   checkers(50,25)
+  tkinter.mainloop()
 
 
 # this definition draws a target
@@ -322,7 +323,7 @@ def checkers(r,s):
 
 
 main()
-tkinter.mainloop()
+
 
 
 
