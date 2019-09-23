@@ -12,7 +12,7 @@ def main():
   #archery(100,100,17)
   #face(95,100,100)
   #winter()
-  dice(50,50,diceWin)
+  dice(100,100,diceWin)
   #square(100)
   #checkers(900,25)
   tkinter.mainloop()
