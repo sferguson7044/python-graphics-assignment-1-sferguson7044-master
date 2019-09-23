@@ -12,9 +12,9 @@ def main():
   #archery(100,100,17)
   #face(95,100,100)
   #winter()
-  dice(100,100,diceWin)
+  dice(50,50,diceWin)
   #square(100)
-  #checkers(25,25)
+  #checkers(900,25)
   tkinter.mainloop()
 
 
@@ -156,12 +156,12 @@ def winter():
 
 diceWin = graphics.GraphWin("dice", 750, 500)
 def dice(x,y,window):
-  dice1(100, 150, window)
-  dice2(350, 150, window)
-  dice3(600, 150, window)
-  dice4(100, 400, window)
-  dice5(350, 400, window)
-  dice6(600, 400, window)
+  dice1((100/100)*x, (150/100)*y, window)
+  dice2((350/100)*x, (150/100)*y, window)
+  dice3((600/100)*x, (150/100)*y, window)
+  dice4((100/100)*x, (400/100)*y, window)
+  dice5((350/100)*x, (400/100)*y, window)
+  dice6((600/100)*x, (400/100)*y, window)
 
 #a function to draw a 3d dice around a center point(x,y)
 def die(x,y,window):
@@ -310,10 +310,11 @@ def square(r):
 
 
 def checkers(r,s):
-  checkerWin = graphics.GraphWin("checkers",r*r,r*r)
-  for row in range(r):
-    for col in range(r):
-      rect = graphics.Rectangle(graphics.Point(row*s,col*s), graphics.Point(((row+1)*s),((col+1)*s)))
+  checkerWin = graphics.GraphWin("checkers",r,r)
+  i=r/s
+  for row in range(int(i)):
+    for col in range(int(i)):
+      rect = graphics.Rectangle(graphics.Point(row*(s),col*(s)), graphics.Point(((row+1)*(s)),((col+1)*(s))))
       if (col+row) %2 == 0:
         rect.setFill("white")
         rect.draw(checkerWin)
