@@ -9,13 +9,14 @@ import graphics
 import tkinter
 
 def main():
-  #archery(100,100,17)
-  #face(95,100,100)
-  #winter()
-  dice(1,100,100,100)
-  #square(100)
-  #checkers(900,25)
+  archery(100,100,17)
+  face(95,100,100)
+  winter(150,150,35)
+  dice(100,100,100)
+  square(100)
+  checkers(900,25)
   tkinter.mainloop()
+
 
 
 # this definition draws a target
@@ -49,6 +50,7 @@ def archery(cx,cy,r):
   yellowCircle = graphics.Circle(p, 1 * r)
   yellowCircle.setFill("yellow")
   yellowCircle.draw(archeryWin)
+
 
 
 # Draws a face
@@ -85,81 +87,86 @@ def face(r,cx,cy):
   mouth.setFill("pink")
   mouth.draw(faceWin)
 
+
+
 # Draws a winter scene
-def winter():
-  winterWin = graphics.GraphWin()
+win = graphics.GraphWin()
+def winter(scx,scy,sr):
+#scx= snowman center, x coord
+#scy= snowman center, y coord
+#sr= snowman radius
 
 #background
-  winterWin.setBackground("white")
+  win.setBackground("white")
   p1 = graphics.Point(-1,150)
   p2 = graphics.Point(201,201)
   snow = graphics.Rectangle(p1,p2)
   snow.setFill("light blue")
-  snow.draw(winterWin)
+  snow.draw(win)
 
-  def snowman(cx,cy,r):
-    p1 = graphics.Point(cx,cy)
-    snowman1 = graphics.Circle(p1,r)
-    snowman1.setFill("white")
-    snowman1.draw(winterWin)
+  snowman(scx, scy, sr)
+  stump(55, 125, 70, 160)
+  top(63, 75, 23, 135, 103)
 
-    p2 = graphics.Point(cx,(115/150)*cy)
-    snowman2 = graphics.Circle(p2,(25/35)*r)
-    snowman2.setFill("white")
-    snowman2.draw(winterWin)
+def snowman(scx,scy,sr):
 
-    p3 = graphics.Point(cx, (85/150)*cy)
-    snowman3 = graphics.Circle(p3,(15/35)*r)
-    snowman3.setFill("white")
-    snowman3.draw(winterWin)
+  p1 = graphics.Point(scx,scy)
+  snowman1 = graphics.Circle(p1,sr)
+  snowman1.setFill("white")
+  snowman1.draw(win)
 
-  snowman(150, 150, 35)
+  p2 = graphics.Point(scx,(115/150)*scy)
+  snowman2 = graphics.Circle(p2,(25/35)*sr)
+  snowman2.setFill("white")
+  snowman2.draw(win)
 
-  def tree():
-    def stump(cx,cy,cx2,cy2):
-      p1 = graphics.Point(cx,cy)
-      p2 = graphics.Point(cx2,cy2)
-      treeBase = graphics.Rectangle(p1,p2)
-      treeBase.setFill("tan")
-      treeBase.draw(winterWin)
+  p3 = graphics.Point(scx, (85/150)*scy)
+  snowman3 = graphics.Circle(p3,(15/35)*sr)
+  snowman3.setFill("white")
+  snowman3.draw(win)
 
-    def top(p1x,p1y,p2x,p23y,p3x):
-      p1 = graphics.Point(p1x,p1y)
-      p2 = graphics.Point(p2x,p23y)
-      p3 = graphics.Point(p3x,p23y)
-      tree1 = graphics.Polygon(p1,p2,p3,p1)
-      tree1.setFill("green")
-      tree1.setOutline("green")
-      tree1.draw(winterWin)
+def stump(cx,cy,cx2,cy2):
+  p1 = graphics.Point(cx,cy)
+  p2 = graphics.Point(cx2,cy2)
+  treeBase = graphics.Rectangle(p1,p2)
+  treeBase.setFill("tan")
+  treeBase.draw(win)
 
-      p1.move(0,-30/75*p1y)
-      p2.move(5/23*p2x,-30/135*p23y)
-      p3.move(-5/103*p3x,-30/135*p23y)
-      tree2 = graphics.Polygon(p1,p2,p3,p1)
-      tree2.setFill("green")
-      tree2.setOutline("green")
-      tree2.draw(winterWin)
+def top(p1x,p1y,p2x,p23y,p3x):
+  p1 = graphics.Point(p1x,p1y)
+  p2 = graphics.Point(p2x,p23y)
+  p3 = graphics.Point(p3x,p23y)
+  tree1 = graphics.Polygon(p1,p2,p3,p1)
+  tree1.setFill("green")
+  tree1.setOutline("green")
+  tree1.draw(win)
 
-      p1.move(0, -30/75*p1y)
-      p2.move(5/23*p2x, -30/135*p23y)
-      p3.move(-5/103*p3x, -30/135*p23y)
-      tree3 = graphics.Polygon(p1, p2, p3, p1)
-      tree3.setFill("green")
-      tree3.setOutline("green")
-      tree3.draw(winterWin)
+  p1.move(0,-30/75*p1y)
+  p2.move(5/23*p2x,-30/135*p23y)
+  p3.move(-5/103*p3x,-30/135*p23y)
+  tree2 = graphics.Polygon(p1,p2,p3,p1)
+  tree2.setFill("green")
+  tree2.setOutline("green")
+  tree2.draw(win)
 
-    stump(55, 125, 70, 160)
-    top(63, 75, 23, 135, 103)
-
-  tree()
-
-
-def dice(num,size,cx,cy):
-  die(size,cx,cy)
+  p1.move(0, -30/75*p1y)
+  p2.move(5/23*p2x, -30/135*p23y)
+  p3.move(-5/103*p3x, -30/135*p23y)
+  tree3 = graphics.Polygon(p1, p2, p3, p1)
+  tree3.setFill("green")
+  tree3.setOutline("green")
+  tree3.draw(win)
 
 
 
-
+#calls all of the dice functions in different windows since i dont know how to make it die(num)(other parameters)
+def dice(size,cx,cy):
+  die1(size,cx,cy)
+  die2(size,cx,cy)
+  die3(size, cx, cy)
+  die4(size, cx, cy)
+  die5(size, cx, cy)
+  die6(size, cx, cy)
 
 #a function to draw a dice with 1 dot
 def die1(size,cx,cy):
@@ -307,6 +314,9 @@ def die6(size, cx, cy):
   rightMiddle.setFill("black")
   rightMiddle.draw(diceWin)
 
+
+
+#draws the abstract squares based on size
 def square(r):
   squareWin = graphics.GraphWin("square thing",r*2,r*2)
 
@@ -349,6 +359,8 @@ def square(r):
   smallBlue2.draw(squareWin)
 
 
+
+#draws a checker board based on how many squares and how big the squares are
 def checkers(r,s):
   checkerWin = graphics.GraphWin("checkers",r,r)
   i=r/s
