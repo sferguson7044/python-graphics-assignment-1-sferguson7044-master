@@ -9,13 +9,14 @@ import graphics
 import tkinter
 
 def main():
-  #archery(100,100,17)
-  #face(95,100,100)
-  #winter()
-  dice(100,100,diceWin)
-  #square(100)
-  #checkers(900,25)
+  archery(100,100,17)
+  face(95,100,100)
+  winter(150,150,35)
+  dice(100,100,100)
+  square(100)
+  checkers(900,25)
   tkinter.mainloop()
+
 
 
 # this definition draws a target
@@ -49,6 +50,7 @@ def archery(cx,cy,r):
   yellowCircle = graphics.Circle(p, 1 * r)
   yellowCircle.setFill("yellow")
   yellowCircle.draw(archeryWin)
+
 
 
 # Draws a face
@@ -85,188 +87,236 @@ def face(r,cx,cy):
   mouth.setFill("pink")
   mouth.draw(faceWin)
 
+
+
 # Draws a winter scene
-def winter():
-  winterWin = graphics.GraphWin()
+win = graphics.GraphWin()
+def winter(scx,scy,sr):
+#scx= snowman center, x coord
+#scy= snowman center, y coord
+#sr= snowman radius
 
 #background
-  winterWin.setBackground("white")
+  win.setBackground("white")
   p1 = graphics.Point(-1,150)
   p2 = graphics.Point(201,201)
   snow = graphics.Rectangle(p1,p2)
   snow.setFill("light blue")
-  snow.draw(winterWin)
+  snow.draw(win)
 
-  def snowman(cx,cy,r):
-    p1 = graphics.Point(cx,cy)
-    snowman1 = graphics.Circle(p1,r)
-    snowman1.setFill("white")
-    snowman1.draw(winterWin)
+  snowman(scx, scy, sr)
+  stump(55, 125, 70, 160)
+  top(63, 75, 23, 135, 103)
 
-    p2 = graphics.Point(cx,(115/150)*cy)
-    snowman2 = graphics.Circle(p2,(25/35)*r)
-    snowman2.setFill("white")
-    snowman2.draw(winterWin)
+def snowman(scx,scy,sr):
 
-    p3 = graphics.Point(cx, (85/150)*cy)
-    snowman3 = graphics.Circle(p3,(15/35)*r)
-    snowman3.setFill("white")
-    snowman3.draw(winterWin)
+  p1 = graphics.Point(scx,scy)
+  snowman1 = graphics.Circle(p1,sr)
+  snowman1.setFill("white")
+  snowman1.draw(win)
 
-  snowman(150, 150, 35)
+  p2 = graphics.Point(scx,(115/150)*scy)
+  snowman2 = graphics.Circle(p2,(25/35)*sr)
+  snowman2.setFill("white")
+  snowman2.draw(win)
 
-  def tree():
-    def stump(cx,cy,cx2,cy2):
-      p1 = graphics.Point(cx,cy)
-      p2 = graphics.Point(cx2,cy2)
-      treeBase = graphics.Rectangle(p1,p2)
-      treeBase.setFill("tan")
-      treeBase.draw(winterWin)
+  p3 = graphics.Point(scx, (85/150)*scy)
+  snowman3 = graphics.Circle(p3,(15/35)*sr)
+  snowman3.setFill("white")
+  snowman3.draw(win)
 
-    def top(p1x,p1y,p2x,p23y,p3x):
-      p1 = graphics.Point(p1x,p1y)
-      p2 = graphics.Point(p2x,p23y)
-      p3 = graphics.Point(p3x,p23y)
-      tree1 = graphics.Polygon(p1,p2,p3,p1)
-      tree1.setFill("green")
-      tree1.setOutline("green")
-      tree1.draw(winterWin)
+def stump(cx,cy,cx2,cy2):
+  p1 = graphics.Point(cx,cy)
+  p2 = graphics.Point(cx2,cy2)
+  treeBase = graphics.Rectangle(p1,p2)
+  treeBase.setFill("tan")
+  treeBase.draw(win)
 
-      p1.move(0,-30/75*p1y)
-      p2.move(5/23*p2x,-30/135*p23y)
-      p3.move(-5/103*p3x,-30/135*p23y)
-      tree2 = graphics.Polygon(p1,p2,p3,p1)
-      tree2.setFill("green")
-      tree2.setOutline("green")
-      tree2.draw(winterWin)
+def top(p1x,p1y,p2x,p23y,p3x):
+  p1 = graphics.Point(p1x,p1y)
+  p2 = graphics.Point(p2x,p23y)
+  p3 = graphics.Point(p3x,p23y)
+  tree1 = graphics.Polygon(p1,p2,p3,p1)
+  tree1.setFill("green")
+  tree1.setOutline("green")
+  tree1.draw(win)
 
-      p1.move(0, -30/75*p1y)
-      p2.move(5/23*p2x, -30/135*p23y)
-      p3.move(-5/103*p3x, -30/135*p23y)
-      tree3 = graphics.Polygon(p1, p2, p3, p1)
-      tree3.setFill("green")
-      tree3.setOutline("green")
-      tree3.draw(winterWin)
+  p1.move(0,-30/75*p1y)
+  p2.move(5/23*p2x,-30/135*p23y)
+  p3.move(-5/103*p3x,-30/135*p23y)
+  tree2 = graphics.Polygon(p1,p2,p3,p1)
+  tree2.setFill("green")
+  tree2.setOutline("green")
+  tree2.draw(win)
 
-    stump(55, 125, 70, 160)
-    top(63, 75, 23, 135, 103)
-
-  tree()
+  p1.move(0, -30/75*p1y)
+  p2.move(5/23*p2x, -30/135*p23y)
+  p3.move(-5/103*p3x, -30/135*p23y)
+  tree3 = graphics.Polygon(p1, p2, p3, p1)
+  tree3.setFill("green")
+  tree3.setOutline("green")
+  tree3.draw(win)
 
 
-diceWin = graphics.GraphWin("dice", 750, 500)
-def dice(x,y,window):
-  dice1((100/100)*x, (150/100)*y, window)
-  dice2((350/100)*x, (150/100)*y, window)
-  dice3((600/100)*x, (150/100)*y, window)
-  dice4((100/100)*x, (400/100)*y, window)
-  dice5((350/100)*x, (400/100)*y, window)
-  dice6((600/100)*x, (400/100)*y, window)
 
-#a function to draw a 3d dice around a center point(x,y)
-def die(x,y,window):
-  p1 = graphics.Point(x-75,y-75)
-  p2 = graphics.Point(x+75,y+75)
-  die = graphics.Rectangle(p1,p2)
-  die.draw(window)
+#calls all of the dice functions in different windows since i dont know how to make it die(num)(other parameters)
+def dice(size,cx,cy):
+  die1(size,cx,cy)
+  die2(size,cx,cy)
+  die3(size, cx, cy)
+  die4(size, cx, cy)
+  die5(size, cx, cy)
+  die6(size, cx, cy)
 
-  pl1 = graphics.Point(x-25,y-125)
-  line1 = graphics.Line(p1,pl1)
-  line1.draw(window)
+#a function to draw a dice with 1 dot
+def die1(size,cx,cy):
+  diceWin = graphics.GraphWin("dice",200,200)
+  center = graphics.Point(cx,cy)
+  base = graphics.Rectangle(graphics.Point(cx-(1/2)*size,cy-(1/2)*size),graphics.Point(cx+(1/2)*size,cy+(1/2)*size))
+  base.draw(diceWin)
 
-  p1l2 = graphics.Point(x+75,y-75)
-  p2l2 = graphics.Point(x+125,y-125)
-  line2 = graphics.Line(p1l2,p2l2)
-  line2.draw(window)
-
-  p1l3 = graphics.Point(x+75,y+75)
-  p2l3 = graphics.Point(x+125,y+25)
-  line3 = graphics.Line(p1l3,p2l3)
-  line3.draw(window)
-
-  p1l4 = graphics.Point(x-25,y-125)
-  p2l4 = graphics.Point(x+125,y-125)
-  line4 = graphics.Line(p1l4,p2l4)
-  line4.draw(window)
-
-  p1l5 = graphics.Point(x+125,y-125)
-  p2l5 = graphics.Point(x+125,y+25)
-  line5 = graphics.Line(p1l5,p2l5)
-  line5.draw(window)
-
-#draws the dot in the direct center of the dice
-def centerPoint(x,y,window):
-  p1 = graphics.Point(x,y)
-  pt1 = graphics.Circle(p1,10)
+  pt1 = graphics.Circle(center, (1/10)*size)
   pt1.setFill("black")
-  pt1.draw(window)
-#draws the dots at the top right and the bottom left
-def diagonalEnds(x,y,window):
-  leftBottompt = graphics.Point(x - 50, y + 50)
-  leftBottom = graphics.Circle(leftBottompt,10)
+  pt1.draw(diceWin)
+
+#a function to draw a dice with 2 dots
+def die2(size,cx,cy):
+  diceWin = graphics.GraphWin("dice", 200, 200)
+  base = graphics.Rectangle(graphics.Point(cx - (1 / 2) * size, cy - (1 / 2) * size),
+                            graphics.Point(cx + (1 / 2) * size, cy + (1 / 2) * size))
+  base.draw(diceWin)
+
+  leftBottompt = graphics.Point(cx - (1/3)*size, cy + (1/3)*size)
+  leftBottom = graphics.Circle(leftBottompt, (1/10)*size)
   leftBottom.setFill("black")
-  leftBottom.draw(window)
-  rightToppt = graphics.Point(x + 50 , y - 50)
-  rightTop = graphics.Circle(rightToppt,10)
+  leftBottom.draw(diceWin)
+
+  rightToppt = graphics.Point(cx + (1/3)*size, cy - (1/3)*size)
+  rightTop = graphics.Circle(rightToppt, (1/10)*size)
   rightTop.setFill("black")
-  rightTop.draw(window)
-#draws the dots at the bottom right and the top left
-def diagonalEndsOpp(x,y,window):
-  leftToppt = graphics.Point(x - 50 , y - 50)
-  leftTop = graphics.Circle(leftToppt,10)
+  rightTop.draw(diceWin)
+
+#a function to draw a dice with 3 dots
+def die3(size,cx,cy):
+  diceWin = graphics.GraphWin("dice", 200, 200)
+  center = graphics.Point(cx, cy)
+  base = graphics.Rectangle(graphics.Point(cx - (1 / 2) * size, cy - (1 / 2) * size),
+                            graphics.Point(cx + (1 / 2) * size, cy + (1 / 2) * size))
+  base.draw(diceWin)
+
+  leftBottompt = graphics.Point(cx - (1/3)*size, cy + (1/3)*size)
+  leftBottom = graphics.Circle(leftBottompt, (1/10)*size)
+  leftBottom.setFill("black")
+  leftBottom.draw(diceWin)
+
+  rightToppt = graphics.Point(cx + (1/3)*size, cy - (1/3)*size)
+  rightTop = graphics.Circle(rightToppt, (1/10)*size)
+  rightTop.setFill("black")
+  rightTop.draw(diceWin)
+
+  pt1 = graphics.Circle(center, (1 / 10) * size)
+  pt1.setFill("black")
+  pt1.draw(diceWin)
+
+#a function to draw a dice with 4 dots
+def die4(size,cx,cy):
+  diceWin = graphics.GraphWin("dice", 200, 200)
+  base = graphics.Rectangle(graphics.Point(cx - (1 / 2) * size, cy - (1 / 2) * size),
+                            graphics.Point(cx + (1 / 2) * size, cy + (1 / 2) * size))
+  base.draw(diceWin)
+
+  leftBottompt = graphics.Point(cx - (1/3)*size, cy + (1/3)*size)
+  leftBottom = graphics.Circle(leftBottompt, (1/10)*size)
+  leftBottom.setFill("black")
+  leftBottom.draw(diceWin)
+
+  rightToppt = graphics.Point(cx + (1/3)*size, cy - (1/3)*size)
+  rightTop = graphics.Circle(rightToppt, (1/10)*size)
+  rightTop.setFill("black")
+  rightTop.draw(diceWin)
+
+  leftToppt = graphics.Point(cx - (1/3)*size, cy - (1/3)*size)
+  leftTop = graphics.Circle(leftToppt, (1/10)*size)
   leftTop.setFill("black")
-  leftTop.draw(window)
-  rightBottompt = graphics.Point(x + 50, y +50)
-  rightBottom = graphics.Circle(rightBottompt,10)
+  leftTop.draw(diceWin)
+
+  rightBottompt = graphics.Point(cx + (1/3)*size, cy + (1/3)*size)
+  rightBottom = graphics.Circle(rightBottompt, (1/10)*size)
   rightBottom.setFill("black")
-  rightBottom.draw(window)
-#draws the two points parallel to the center of the dice and perpendicular to the corner dice
-def middlePoints(x,y,window):
-  leftMiddlept = graphics.Point(x - 50, y)
-  leftMiddle = graphics.Circle(leftMiddlept, 10)
+  rightBottom.draw(diceWin)
+
+#a function to draw a dice with 5 dots
+def die5(size,cx,cy):
+  diceWin = graphics.GraphWin("dice", 200, 200)
+  center = graphics.Point(cx, cy)
+  base = graphics.Rectangle(graphics.Point(cx - (1 / 2) * size, cy - (1 / 2) * size),
+                            graphics.Point(cx + (1 / 2) * size, cy + (1 / 2) * size))
+  base.draw(diceWin)
+
+  leftBottompt = graphics.Point(cx - (1/3)*size, cy + (1/3)*size)
+  leftBottom = graphics.Circle(leftBottompt, (1/10)*size)
+  leftBottom.setFill("black")
+  leftBottom.draw(diceWin)
+
+  rightToppt = graphics.Point(cx + (1/3)*size, cy - (1/3)*size)
+  rightTop = graphics.Circle(rightToppt, (1/10)*size)
+  rightTop.setFill("black")
+  rightTop.draw(diceWin)
+
+  leftToppt = graphics.Point(cx - (1/3)*size, cy - (1/3)*size)
+  leftTop = graphics.Circle(leftToppt, (1/10)*size)
+  leftTop.setFill("black")
+  leftTop.draw(diceWin)
+
+  rightBottompt = graphics.Point(cx + (1/3)*size, cy + (1/3)*size)
+  rightBottom = graphics.Circle(rightBottompt, (1/10)*size)
+  rightBottom.setFill("black")
+  rightBottom.draw(diceWin)
+
+  pt1 = graphics.Circle(center, (1 / 10) * size)
+  pt1.setFill("black")
+  pt1.draw(diceWin)
+
+#a function to draw a dice with 6 dots
+def die6(size, cx, cy):
+  diceWin = graphics.GraphWin("dice", 200, 200)
+  base = graphics.Rectangle(graphics.Point(cx - (1 / 2) * size, cy - (1 / 2) * size),
+                            graphics.Point(cx + (1 / 2) * size, cy + (1 / 2) * size))
+  base.draw(diceWin)
+
+  leftBottompt = graphics.Point(cx - (1 / 3) * size, cy + (1 / 3) * size)
+  leftBottom = graphics.Circle(leftBottompt, (1 / 10) * size)
+  leftBottom.setFill("black")
+  leftBottom.draw(diceWin)
+
+  rightToppt = graphics.Point(cx + (1 / 3) * size, cy - (1 / 3) * size)
+  rightTop = graphics.Circle(rightToppt, (1 / 10) * size)
+  rightTop.setFill("black")
+  rightTop.draw(diceWin)
+
+  leftToppt = graphics.Point(cx - (1 / 3) * size, cy - (1 / 3) * size)
+  leftTop = graphics.Circle(leftToppt, (1 / 10) * size)
+  leftTop.setFill("black")
+  leftTop.draw(diceWin)
+
+  rightBottompt = graphics.Point(cx + (1 / 3) * size, cy + (1 / 3) * size)
+  rightBottom = graphics.Circle(rightBottompt, (1 / 10) * size)
+  rightBottom.setFill("black")
+  rightBottom.draw(diceWin)
+
+  leftMiddlept = graphics.Point(cx - (1 / 3) * size, cy)
+  leftMiddle = graphics.Circle(leftMiddlept, (1 / 10) * size)
   leftMiddle.setFill("black")
-  leftMiddle.draw(window)
-  rightMiddlept = graphics.Point(x + 50, y)
-  rightMiddle = graphics.Circle(rightMiddlept, 10)
+  leftMiddle.draw(diceWin)
+
+  rightMiddlept = graphics.Point(cx + (1 / 3) * size, cy)
+  rightMiddle = graphics.Circle(rightMiddlept, (1 / 10) * size)
   rightMiddle.setFill("black")
-  rightMiddle.draw(window)
+  rightMiddle.draw(diceWin)
 
-#draws dice with 1 dot
-def dice1(x,y,window):
-  die(x,y,window)
-  centerPoint(x,y,window)
 
-#draws dice with 2 dots
-def dice2(x,y,window):
-  die(x,y,window)
-  diagonalEnds(x,y,window)
 
-# draws dice with 3 dots
-def dice3(x, y,window):
-  die(x,y,window)
-  centerPoint(x,y,window)
-  diagonalEnds(x,y,window)
-
-# draws dice with 4 dots
-def dice4(x,y,window):
-  die(x,y,window)
-  diagonalEnds(x,y,window)
-  diagonalEndsOpp(x,y,window)
-
-# draws dice with 5 dots
-def dice5(x,y,window):
-  die(x,y,window)
-  centerPoint(x,y,window)
-  diagonalEnds(x,y,window)
-  diagonalEndsOpp(x,y,window)
-
-# draws dice with 6 dots
-def dice6(x,y,window):
-  die(x,y,window)
-  diagonalEnds(x,y,window)
-  diagonalEndsOpp(x,y,window)
-  middlePoints(x,y,window)
-
+#draws the abstract squares based on size
 def square(r):
   squareWin = graphics.GraphWin("square thing",r*2,r*2)
 
@@ -309,6 +359,8 @@ def square(r):
   smallBlue2.draw(squareWin)
 
 
+
+#draws a checker board based on how many squares and how big the squares are
 def checkers(r,s):
   checkerWin = graphics.GraphWin("checkers",r,r)
   i=r/s
@@ -324,7 +376,3 @@ def checkers(r,s):
 
 
 main()
-
-
-
-
